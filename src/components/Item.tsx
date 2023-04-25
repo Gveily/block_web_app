@@ -1,5 +1,6 @@
 import { FC } from "react";
 import './item.styles.css';
+import { Button } from "@mui/material";
 
 export interface ItemProps {
   name: string,
@@ -21,6 +22,6 @@ export const Item: FC<ItemProps> = (
     <div className='item-name'>{name}</div>
     <div className='item-weight'>{weight}</div>
     <div className='item-price'>{price}</div>
-    <button onClick={() => {console.log(name)}}>Buy</button>
+    <Button onClick={() => {console.log(name)}} variant='contained'>Buy</Button>
   </div>)
 }
