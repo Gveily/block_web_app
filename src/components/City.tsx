@@ -1,18 +1,14 @@
 import { FC } from "react";
 import './city.styles.css';
 import { CityInterface } from "../api/api";
-import Gdansk from '../assets/Gdansk.jpg';
-import Gdynia from '../assets/Gdynia.jpg';
-import Sopot from '../assets/Sopot.jpg';
-import Pruszcz from '../assets/Pruszcz.jpg';
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const imgMapper = {
-  Gdansk,
-  Gdynia,
-  Sopot,
-  Pruszcz
+  Gdansk: 'https://pliki.well.pl/i/01/66/37/016637_r2_1320.jpg',
+  Gdynia: 'https://www.worldisbeautiful.eu/up_files/2091-Gdynia-noca.jpg',
+  Sopot: 'https://najlepiejnadmorzem.pl/wp-content/uploads/2020/06/sopot-nad-morzem-najlepsze-miejscowosci-nad-Baltykiem.jpeg',
+  Pruszcz: 'https://mieszkamwpruszczu.pl/res/907/701038/PG.jpg?width=950'
 }
 
 export const City: FC<CityInterface> = ({ id, name}) => {
