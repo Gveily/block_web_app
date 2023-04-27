@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { baseUrl, ProductInterface } from "../../api/api";
 import axios from "axios";
 import { Item } from "../../components/Item";
@@ -38,11 +38,6 @@ const AreaPage = () => {
   const makeOrder = () => {
     tele.MainButton.text = "Заплатить";
     tele.MainButton.show();
-
-    tele.MainButton.onClick(async () => {
-      await tele.sendData('12311')
-      await tele.close();
-    })
   }
 
   const getTotalPrice = useMemo(() => {
@@ -51,6 +46,17 @@ const AreaPage = () => {
       return acc + +currentValue.price;
     }, 0)
   }, [addedProducts])
+
+  const onSendData = useCallback(() => {
+    tele.sendData(JSON.stringify(addedProducts));
+  }, [addedProducts])
+
+  useEffect(() => {
+    tele.onEvent('mainButtonClicked', onSendData)
+    return () => {
+      tele.offEvent('mainButtonClicked', onSendData)
+    }
+  }, [onSendData])
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -67,17 +73,6 @@ const AreaPage = () => {
 
     fetchProducts()
   }, [id]);
-
-  useEffect(() => {
-    tele.onEvent('mainButtonClicked', async () => {
-      try {
-        await tele.sendData('12311')
-        await tele.close();
-      } catch (e) {
-
-      }
-    })
-  }, [addedProducts]);
 
   return (<div className={ 'items-container' }>
     { !!addedProducts.length && <><Button
