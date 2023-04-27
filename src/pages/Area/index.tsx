@@ -38,6 +38,10 @@ const AreaPage = () => {
   const makeOrder = () => {
     tele.MainButton.text = "Заплатить";
     tele.MainButton.show();
+
+    tele.MainButton.onClick(() => {
+      tele.sendData('12311')
+    })
   }
 
   const getTotalPrice = useMemo(() => {
@@ -65,10 +69,8 @@ const AreaPage = () => {
 
   useEffect(() => {
     tele.onEvent('mainButtonClicked', () => {
-      tele.MainButton.text = 'Clicked!';
-
       try {
-        tele.sendData(JSON.stringify(addedProducts));
+        tele.sendData('123123');
       } catch (e) {
 
       }
