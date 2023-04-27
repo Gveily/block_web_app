@@ -20,6 +20,19 @@ body {
   max-width: 400px;
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.cities-container {
+  margin-top: 10px;
+  min-width: 120px;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 20px;
   position: relative;
 }

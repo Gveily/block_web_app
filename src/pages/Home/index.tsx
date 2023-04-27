@@ -18,7 +18,7 @@ const Home = () => {
     fetchCities();
   }, [])
 
-  return (<div className='items-container'>
+  return (<div className='cities-container'>
     {cities.map((city) => {
       return <City {...city} key={city.id} />
     })}

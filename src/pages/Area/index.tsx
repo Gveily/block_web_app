@@ -22,7 +22,9 @@ const AreaPage = () => {
   };
 
   const addItem = (product: ProductInterface) => () => {
-    setAddedProducts(addedProducts.concat([product]));
+    if (addedProducts.indexOf(product) === -1) {
+      setAddedProducts(addedProducts.concat([product]));
+    }
   }
 
   const removeItem = (id: number) => () => {
@@ -76,7 +78,7 @@ const AreaPage = () => {
         { addedProducts.map(el => {
           return (
             <MenuItem key={ el.id }>
-              <div>{ el.name }</div>
+              <div>{ el.name } {el.weight}</div>
               <DeleteIcon onClick={ removeItem(el.id) }/>
             </MenuItem>
           )
