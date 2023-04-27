@@ -7,6 +7,9 @@ import { Button, Menu, MenuItem } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import Divider from '@mui/material/Divider';
 
+// @ts-ignore
+const tele = window.Telegram.WebApp;
+
 const AreaPage = () => {
   const { id } = useParams();
   const [products, setProducts] = useState<Array<ProductInterface>>([]);
@@ -30,6 +33,16 @@ const AreaPage = () => {
   const removeItem = (id: number) => () => {
     setAddedProducts(addedProducts.filter(el => el.id !== id));
     handleClose();
+  };
+
+  const makeOrder = () => {
+    const callback = () => {
+      console.log('123')
+    }
+
+    tele.MainButton.text = "Заплатить";
+    tele.MainButton.show();
+    tele.MainButton.onClick(callback)
   }
 
   const getTotalPrice = useMemo(() => {
@@ -84,7 +97,12 @@ const AreaPage = () => {
           )
         }) }
         <Divider/>
-        <div className='total-price'><span>Итоговая цена:</span> <span className='price-value'>{ getTotalPrice.toString() } zł</span></div>
+        <div className='total-price'>
+          <span>Итоговая цена:</span> <span className='price-value'>{ getTotalPrice.toString() } zł</span>
+        </div>
+        <div className="total-price buy-container">
+          <Button variant='contained' size='small' onClick={makeOrder}>Приобрести</Button>
+        </div>
       </Menu></> }
     { products.map(el => {
       return <Item

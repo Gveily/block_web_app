@@ -68,3 +68,7 @@ body {
 .price-value {
   font-weight: bold;
 }
+
+.buy-container {
+  margin-top: 12px;
+}
