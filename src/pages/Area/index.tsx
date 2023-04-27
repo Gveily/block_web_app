@@ -6,9 +6,7 @@ import { Item } from "../../components/Item";
 import { Button, Menu, MenuItem } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import Divider from '@mui/material/Divider';
-
-// @ts-ignore
-const tele = window.Telegram.WebApp;
+import { useTelegram } from "../../hooks/useTelegram";
 
 const AreaPage = () => {
   const { id } = useParams();
@@ -16,6 +14,7 @@ const AreaPage = () => {
   const [addedProducts, setAddedProducts] = useState<Array<ProductInterface>>([]);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const {tg} = useTelegram();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -36,8 +35,8 @@ const AreaPage = () => {
   };
 
   const makeOrder = () => {
-    tele.MainButton.text = "Заплатить";
-    tele.MainButton.show();
+    tg.MainButton.text = "Заплатить";
+    tg.MainButton.show();
   }
 
   const getTotalPrice = useMemo(() => {
@@ -48,17 +47,19 @@ const AreaPage = () => {
   }, [addedProducts])
 
   const onSendData = useCallback(() => {
-    tele.sendData(JSON.stringify(addedProducts));
+    tg.sendData(JSON.stringify(addedProducts));
   }, [addedProducts])
 
   useEffect(() => {
-    tele.onEvent('mainButtonClicked', onSendData)
+    tg.onEvent('mainButtonClicked', onSendData)
     return () => {
-      tele.offEvent('mainButtonClicked', onSendData)
+      tg.offEvent('mainButtonClicked', onSendData)
     }
   }, [onSendData])
 
   useEffect(() => {
+    tg.ready();
+
     const fetchProducts = async () => {
       const response = await axios.get<Array<ProductInterface>>(baseUrl + '/products/by-area-id', {
         params: {
