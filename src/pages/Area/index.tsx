@@ -36,15 +36,8 @@ const AreaPage = () => {
   };
 
   const makeOrder = () => {
-    const callback = () => {
-      tele.onEvent('mainButtonClicked', function(){
-        tele.sendData("payment");
-      });
-    }
-
     tele.MainButton.text = "Заплатить";
     tele.MainButton.show();
-    tele.MainButton.onClick(callback)
   }
 
   const getTotalPrice = useMemo(() => {
@@ -70,6 +63,11 @@ const AreaPage = () => {
     fetchProducts()
   }, [id]);
 
+  useEffect(() => {
+    tele.onEvent('mainButtonClicked', function(){
+      tele.sendData("payment");
+    });
+  }, [])
 
   return (<div className={ 'items-container' }>
     { !!addedProducts.length && <><Button
