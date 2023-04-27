@@ -39,8 +39,9 @@ const AreaPage = () => {
     tele.MainButton.text = "Заплатить";
     tele.MainButton.show();
 
-    tele.MainButton.onClick(() => {
-      tele.sendData('12311')
+    tele.MainButton.onClick(async () => {
+      await tele.sendData('12311')
+      await tele.close();
     })
   }
 
@@ -68,9 +69,10 @@ const AreaPage = () => {
   }, [id]);
 
   useEffect(() => {
-    tele.onEvent('mainButtonClicked', () => {
+    tele.onEvent('mainButtonClicked', async () => {
       try {
-        tele.sendData('123123');
+        await tele.sendData('12311')
+        await tele.close();
       } catch (e) {
 
       }
