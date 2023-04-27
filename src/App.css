@@ -17,11 +17,17 @@ body {
   margin-top: 10px;
   min-width: 120px;
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
   gap: 20px;
+  position: relative;
+}
+
+#shopping-button {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .areas {
@@ -40,4 +46,12 @@ body {
 
 .area-name {
   font-size: 22px;
+}
+
+.total-price {
+  padding: 0 16px;
+}
+
+.price-value {
+  font-weight: bold;
 }

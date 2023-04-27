@@ -10,3 +10,11 @@ export interface AreaInterface {
   cityId: number;
   name: string;
 }
+
+export interface ProductInterface {
+  id: number;
+  name: string;
+  price: string;
+  weight: string;
+  areaId: number;
+}
