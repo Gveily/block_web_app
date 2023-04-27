@@ -37,7 +37,9 @@ const AreaPage = () => {
 
   const makeOrder = () => {
     const callback = () => {
-      console.log('123')
+      tele.onEvent('mainButtonClicked', function(){
+        tele.sendData("payment");
+      });
     }
 
     tele.MainButton.text = "Заплатить";
