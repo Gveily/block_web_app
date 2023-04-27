@@ -73,7 +73,7 @@ const AreaPage = () => {
 
       }
     })
-  }, [])
+  }, [addedProducts]);
 
   return (<div className={ 'items-container' }>
     { !!addedProducts.length && <><Button
