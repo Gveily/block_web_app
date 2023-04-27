@@ -38,10 +38,6 @@ const AreaPage = () => {
   const makeOrder = () => {
     tele.MainButton.text = "Заплатить";
     tele.MainButton.show();
-
-    tele.onEvent('mainButtonClicked', () => {
-      tele.sendData("paymentdata");
-    });
   }
 
   const getTotalPrice = useMemo(() => {
@@ -67,6 +63,18 @@ const AreaPage = () => {
     fetchProducts()
   }, [id]);
 
+  useEffect(() => {
+    tele.onEvent('mainButtonClicked', () => {
+      tele.MainButton.text = 'Clicked!';
+
+      try {
+        tele.sendData(JSON.stringify(addedProducts));
+      } catch (e) {
+
+      }
+    })
+  }, [])
+
   return (<div className={ 'items-container' }>
     { !!addedProducts.length && <><Button
       id="shopping-button"
@@ -89,7 +97,7 @@ const AreaPage = () => {
         { addedProducts.map(el => {
           return (
             <MenuItem key={ el.id }>
-              <div>{ el.name } {el.weight}</div>
+              <div>{ el.name } { el.weight }</div>
               <DeleteIcon onClick={ removeItem(el.id) }/>
             </MenuItem>
           )
@@ -99,7 +107,7 @@ const AreaPage = () => {
           <span>Итоговая цена:</span> <span className='price-value'>{ getTotalPrice.toString() } zł</span>
         </div>
         <div className="total-price buy-container">
-          <Button variant='contained' size='small' onClick={makeOrder}>Приобрести</Button>
+          <Button variant='contained' size='small' onClick={ makeOrder }>Приобрести</Button>
         </div>
       </Menu></> }
     { products.map(el => {
