@@ -9,7 +9,7 @@ export const AreaDetailsContainer = styled.div`
 
 export const ProductsContainer = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
 `;
 
