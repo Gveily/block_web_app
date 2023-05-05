@@ -79,7 +79,7 @@ export const IncrementDecrementButton = styled.button`
   outline: none;
   background: #fff;
   color: ${props => props.theme.colors.red};
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
   font-family: 'Inter';
   

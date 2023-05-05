@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import {
   AmountContainer,
   ItemAmountDot,
@@ -11,7 +11,8 @@ import {
 import { Button } from "@mui/material";
 import { defaultTheme } from "../theme";
 import { useDispatch } from "react-redux";
-import { AddedProductInterface, addProduct, removeProduct } from "../store/slices/products";
+import { AddedProductInterface, addProduct, ProductsSelector, removeProduct } from "../store/slices/products";
+import { useAppSelector } from "../store/store";
 
 export interface ItemProps {
   name: string,
@@ -37,12 +38,18 @@ export const Item: FC<ItemProps> = (
   }
 ) => {
   const [amountToBuy, setAmountToBuy] = useState<number>(0);
+  const { addedProducts } = useAppSelector(ProductsSelector);
   const dispatch = useDispatch();
   const addedProduct: AddedProductInterface = {
     baseProductId,
     amountToBuy,
     areaName,
-    areaId
+    areaId,
+    img,
+    weight,
+    price,
+    name,
+    amount
   }
 
   const handleIncrement = async () => {
@@ -66,6 +73,15 @@ export const Item: FC<ItemProps> = (
       return result;
     });
   }
+
+  useEffect(() => {
+    if (addedProducts.length) {
+      const item = addedProducts.find(el => el.baseProductId === baseProductId && el.weight === weight);
+      if (item) {
+        setAmountToBuy(item.amountToBuy);
+      }
+    }
+  }, [addedProducts])
 
   return (
     <ItemContainer>

@@ -1,21 +1,20 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Typography } from "@mui/material";
 import { titleStyles } from "../Home";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { AreaDetailsContainer } from "../AreaDetails/areaDetails.styled";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../store/store";
 import { ProductsSelector } from "../../store/slices/products";
+import { CartItem } from "./cart-item";
 
 const CartPage = () => {
   const navigate = useNavigate();
   const { addedProducts } = useAppSelector(ProductsSelector);
-  const areaId = addedProducts[0].areaId;
+  const [areaId, setAreaId] = useState<number>();
 
   useEffect(() => {
-    if (!addedProducts.length) {
-      navigate('/')
-    }
+    setAreaId(addedProducts[0].areaId);
 
     console.log(addedProducts);
   }, [addedProducts])
@@ -30,6 +29,11 @@ const CartPage = () => {
       cursor: 'pointer'
     } } onClick={ () => navigate(`/area/${ areaId }`) }/>
     <Typography variant='h1' sx={ titleStyles }>Корзина</Typography>
+
+    {addedProducts.map((el, index) => {
+      return <CartItem {...el} key={index} />
+    })}
+
   </AreaDetailsContainer>)
 };
 

@@ -6,6 +6,11 @@ export interface AddedProductInterface {
   amountToBuy: number,
   areaId: number,
   areaName: string,
+  img: string,
+  weight: string,
+  price: string,
+  name: string,
+  amount: number,
 }
 
 export interface ProductsState {
