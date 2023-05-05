@@ -26,7 +26,9 @@ export const productsSlice = createSlice({
   initialState,
   reducers: {
     addProduct: (state, action: PayloadAction<AddedProductInterface>) => {
-      const iterateCallback = (el: AddedProductInterface) => el.baseProductId === action.payload.baseProductId;
+      const iterateCallback = (el: AddedProductInterface) => (
+        el.baseProductId === action.payload.baseProductId && el.areaName === action.payload.areaName
+      );
       const isExist = state.addedProducts.some(iterateCallback);
 
       if (isExist) {

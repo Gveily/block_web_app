@@ -21,7 +21,7 @@ const CartPage = () => {
 
   useEffect(() => {
     if (!addedProducts.length) {
-      navigate('/');
+      navigate(`/area/${areaId}`);
     }
 
     setAreaId(addedProducts[0].areaId);

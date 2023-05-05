@@ -43,10 +43,8 @@ const Home = () => {
   useEffect(() => {
     const fetchCities = async () => {
       const response = await axios.get<Array<CityInterface>>(baseUrl + '/cities');
+
       setIsLoading(false);
-
-      console.log(response);
-
       setCities(response.data);
     };
 
