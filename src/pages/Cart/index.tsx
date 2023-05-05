@@ -30,8 +30,8 @@ const CartPage = () => {
     } } onClick={ () => navigate(`/area/${ areaId }`) }/>
     <Typography variant='h1' sx={ titleStyles }>Корзина</Typography>
 
-    {addedProducts.map((el, index) => {
-      return <CartItem {...el} key={index} />
+    {addedProducts.map((el) => {
+      return <CartItem {...el} key={el.weight + el.baseProductId} />
     })}
 
   </AreaDetailsContainer>)
