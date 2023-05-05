@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Inter';
 }
 
 body {
@@ -11,18 +12,6 @@ body {
 #root {
   display: flex;
   justify-content: center;
-}
-
-.items-container {
-  margin-top: 10px;
-  min-width: 120px;
-  width: 100%;
-  max-width: 400px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  gap: 20px;
-  position: relative;
 }
 
 .cities-container {

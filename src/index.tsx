@@ -4,9 +4,13 @@ import './index.css';
 import App from './App';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
-import AreaPage from "./pages/Area";
-import CityPage from "./pages/Cities";
-import ProductsPage from "./pages/Products";
+import AreaPage from "./pages/AreaDetails";
+import CityPage from "./pages/CityDetails";
+import CartPage from "./pages/Cart";
+import { ThemeProvider } from "styled-components";
+import { defaultTheme } from "./theme";
+import { Provider } from 'react-redux';
+import { store } from "./store/store";
 
 const router = createBrowserRouter([
   {
@@ -19,11 +23,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/area/:id',
-    element: <AreaPage />,
+    element: <AreaPage/>,
   },
   {
-    path: "/products",
-    element: <ProductsPage/>,
+    path: "/cart",
+    element: <CartPage/>,
   }
 ]);
 
@@ -31,7 +35,11 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <App>
-    <RouterProvider router={router} />
-  </App>
+  <ThemeProvider theme={ defaultTheme }>
+    <Provider store={ store }>
+      <App>
+        <RouterProvider router={ router }/>
+      </App>
+    </Provider>
+  </ThemeProvider>
 );

@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Button } from "@mui/material";
 import { AreaInterface } from "../api/api";
 import { useNavigate } from "react-router-dom";
+import { buttonStyles } from "./City";
 
 export const Area: FC<AreaInterface> = ({id, name}) => {
   const navigate = useNavigate();
@@ -10,12 +11,11 @@ export const Area: FC<AreaInterface> = ({id, name}) => {
     navigate(`/area/${id}`)
   }
 
-  return (
-    <div className='area'>
-      <div className="area-name">
-        {name}
-      </div>
-      <Button variant='outlined' onClick={pickAreaHandler}>Выбрать</Button>
-    </div>
-  )
+  return <Button
+    variant='outlined'
+    onClick={ pickAreaHandler }
+    sx={ buttonStyles }
+  >
+    { name }
+  </Button>
 }

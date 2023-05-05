@@ -11,10 +11,19 @@ export interface AreaInterface {
   name: string;
 }
 
+export interface BaseProduct {
+  id: number,
+  name: string,
+  description: string,
+  productPhoto: string,
+}
+
 export interface ProductInterface {
   id: number;
-  name: string;
   price: string;
   weight: string;
   areaId: number;
+  amount: number;
+  baseProductId: number;
+  baseProduct: BaseProduct
 }
