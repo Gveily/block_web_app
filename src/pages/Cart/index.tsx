@@ -29,7 +29,7 @@ const CartPage = () => {
     tg.MainButton.text = "Заплатить" + ' ' + data.reduce((acc, current) => {
       acc += +current.price
       return acc;
-    }, 0);
+    }, 0) + 'zł';
     tg.MainButton.show();
   }
 
