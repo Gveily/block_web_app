@@ -21,21 +21,7 @@ const AreaPage = () => {
   const navigate = useNavigate();
   const { addedProducts } = useAppSelector(ProductsSelector);
 
-  // const makeOrder = () => {
-  //   tg.MainButton.text = "Заплатить";
-  //   tg.MainButton.show();
-  // }
 
-  // const onSendData = useCallback(() => {
-  //   tg.sendData(JSON.stringify(addedProducts));
-  // }, [addedProducts])
-
-  // useEffect(() => {
-  //   tg.onEvent('mainButtonClicked', onSendData)
-  //   return () => {
-  //     tg.offEvent('mainButtonClicked', onSendData)
-  //   }
-  // }, [onSendData])
 
   useEffect(() => {
     tg.ready();

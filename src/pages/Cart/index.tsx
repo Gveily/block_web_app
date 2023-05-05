@@ -1,27 +1,49 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Typography } from "@mui/material";
 import { titleStyles } from "../Home";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { AreaDetailsContainer, NavToCartButton, NavToCartContainer } from "../AreaDetails/areaDetails.styled";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../store/store";
 import { ProductsSelector } from "../../store/slices/products";
 import { CartItem } from "./cart-item";
 import { LoadingComponent } from "../../components/loadingComponent";
+import axios from "axios";
+import { baseUrl, ProductInterface } from "../../api/api";
+import { useTelegram } from "../../hooks/useTelegram";
 
 const CartPage = () => {
   const navigate = useNavigate();
   const { addedProducts } = useAppSelector(ProductsSelector);
+  const [tgData, setTgData] = useState<Array<ProductInterface>>([])
   const [areaId, setAreaId] = useState<number>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const makeOrder = () => {
+  const { tg } = useTelegram();
+
+  const makeOrder = async () => {
     setIsLoading(true);
-    // const resp = axios.post()
+    const { data } = await axios.post<Array<ProductInterface>>(baseUrl + '/products/make-pending-payment', addedProducts);
+    setTgData(data);
+    setIsLoading(false);
+
+    tg.MainButton.text = "Заплатить";
+    tg.MainButton.show();
   }
+
+  const onSendData = useCallback(() => {
+    tg.sendData(JSON.stringify(tgData));
+  }, [tgData])
+
+  useEffect(() => {
+    tg.onEvent('mainButtonClicked', onSendData)
+    return () => {
+      tg.offEvent('mainButtonClicked', onSendData)
+    }
+  }, [onSendData])
 
   useEffect(() => {
     if (!addedProducts.length) {
-      navigate(`/area/${areaId}`);
+      navigate(`/area/${ areaId }`);
     }
 
     setAreaId(addedProducts[0].areaId);
@@ -44,15 +66,15 @@ const CartPage = () => {
     } } onClick={ () => navigate(`/area/${ areaId }`) }/>
     <Typography variant='h1' sx={ titleStyles }>Корзина</Typography>
 
-    {addedProducts.map((el) => {
-      return <CartItem {...el} key={el.weight + el.baseProductId} />
-    })}
+    { addedProducts.map((el) => {
+      return <CartItem { ...el } key={ el.weight + el.baseProductId }/>
+    }) }
 
-    <NavToCartContainer>
-      <NavToCartButton onClick={makeOrder}>
+    {!tgData.length && <NavToCartContainer>
+      <NavToCartButton onClick={ makeOrder }>
         Сделать заказ
       </NavToCartButton>
-    </NavToCartContainer>
+    </NavToCartContainer>}
 
   </AreaDetailsContainer>)
 };

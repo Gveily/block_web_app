@@ -127,6 +127,9 @@ export const Item: FC<ItemProps> = (
           fontWeight: 500,
           fontSize: '12px',
           lineHeight: '15px',
+          '&:hover': {
+            color: defaultTheme.colors.black
+          }
         } }
         onClick={ handleIncrement }
       >
