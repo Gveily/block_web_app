@@ -9,8 +9,8 @@ export const AreaDetailsContainer = styled.div`
 
 export const ProductsContainer = styled.div`
   display: flex;
-  gap: 6px;
   flex-wrap: wrap;
+  justify-content: space-between;
 `;
 
 export const NavToCartContainer = styled.div`
