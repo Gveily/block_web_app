@@ -26,7 +26,10 @@ const CartPage = () => {
     setTgData(data);
     setIsLoading(false);
 
-    tg.MainButton.text = "Заплатить";
+    tg.MainButton.text = "Заплатить" + ' ' + data.reduce((acc, current) => {
+      acc += +current.price
+      return acc;
+    }, 0);
     tg.MainButton.show();
   }
 
