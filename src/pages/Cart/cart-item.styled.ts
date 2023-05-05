@@ -71,6 +71,11 @@ export const CartItemAction = styled.button`
   justify-content: center;
   color: ${props => props.theme.colors.white};
   border-radius: 50%;
+  cursor: pointer;
+  
+  :disabled {
+    opacity: 0.7;
+  }
 `;
 
 export const CartItemCounter = styled.div`

@@ -37,4 +37,5 @@ export const NavToCartButton = styled.button`
   font-size: 16px;
   line-height: 19px;
   letter-spacing: 1px;
+  cursor: pointer;
 `;

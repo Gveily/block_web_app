@@ -81,7 +81,7 @@ export const CartItem: FC<AddedProductInterface> = (
         <CartItemCounter>
           {counter}
         </CartItemCounter>
-        <CartItemAction onClick={handleIncrement}>
+        <CartItemAction onClick={handleIncrement} disabled={counter === amount}>
           +
         </CartItemAction>
       </CartItemActions>
