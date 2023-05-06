@@ -6,7 +6,7 @@ export const ItemContainer = styled.div`
   padding: 8px;
   background-color: ${props => props.theme.colors.gray};
   border-radius: 16px;
-  max-width: 114px;
+  max-width: 110px;
   margin-bottom: 8px;
 `;
 
