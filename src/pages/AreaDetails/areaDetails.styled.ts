@@ -10,7 +10,6 @@ export const AreaDetailsContainer = styled.div`
 export const ProductsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
   margin-bottom: 80px;
 `;
 

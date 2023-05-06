@@ -8,6 +8,10 @@ export const ItemContainer = styled.div`
   border-radius: 16px;
   max-width: 110px;
   margin-bottom: 8px;
+  margin-right: 8px;
+  &:nth-child(3n) {
+    margin-right: 0;
+  }
 `;
 
 export const ItemImage = styled.img`
