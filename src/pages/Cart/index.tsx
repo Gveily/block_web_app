@@ -11,6 +11,7 @@ import { LoadingComponent } from "../../components/loadingComponent";
 import axios from "axios";
 import { baseUrl, ProductInterface } from "../../api/api";
 import { useTelegram } from "../../hooks/useTelegram";
+import { AddedProductsContainer } from "./cart-item.styled";
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -69,9 +70,11 @@ const CartPage = () => {
     } } onClick={ () => navigate(`/area/${ areaId }`) }/>
     <Typography variant='h1' sx={ titleStyles }>Корзина</Typography>
 
-    { addedProducts.map((el) => {
-      return <CartItem { ...el } key={ el.weight + el.baseProductId }/>
-    }) }
+    <AddedProductsContainer>
+      { addedProducts.map((el) => {
+        return <CartItem { ...el } key={ el.weight + el.baseProductId } isDisabled={!!tgData.length}/>
+      }) }
+    </AddedProductsContainer>
 
     {!tgData.length && <NavToCartContainer>
       <NavToCartButton onClick={ makeOrder }>

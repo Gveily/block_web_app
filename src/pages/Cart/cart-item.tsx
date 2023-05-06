@@ -21,7 +21,8 @@ export const CartItem: FC<AddedProductInterface> = (
     amountToBuy,
     price,
     name,
-    amount
+    amount,
+    isDisabled
   }
 ) => {
   const [counter, setCounter] = useState<number>(amountToBuy);
@@ -75,13 +76,13 @@ export const CartItem: FC<AddedProductInterface> = (
         </CartItemWeightAndArea>
       </CartItemDescription>
       <CartItemActions>
-        <CartItemAction onClick={handleDecrement}>
+        <CartItemAction onClick={handleDecrement} disabled={isDisabled}>
           -
         </CartItemAction>
         <CartItemCounter>
           {counter}
         </CartItemCounter>
-        <CartItemAction onClick={handleIncrement} disabled={counter === amount}>
+        <CartItemAction onClick={handleIncrement} disabled={counter === amount || isDisabled}>
           +
         </CartItemAction>
       </CartItemActions>

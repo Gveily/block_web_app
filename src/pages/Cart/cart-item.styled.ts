@@ -86,3 +86,11 @@ export const CartItemCounter = styled.div`
   line-height: 21px;
   color: ${props => props.theme.colors.red};
 `;
+
+export const AddedProductsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 90px;
+`;

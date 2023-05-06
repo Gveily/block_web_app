@@ -21,8 +21,6 @@ const AreaPage = () => {
   const navigate = useNavigate();
   const { addedProducts } = useAppSelector(ProductsSelector);
 
-
-
   useEffect(() => {
     tg.ready();
 

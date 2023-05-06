@@ -7,6 +7,7 @@ export const ItemContainer = styled.div`
   background-color: ${props => props.theme.colors.gray};
   border-radius: 16px;
   max-width: 114px;
+  margin-bottom: 8px;
 `;
 
 export const ItemImage = styled.img`

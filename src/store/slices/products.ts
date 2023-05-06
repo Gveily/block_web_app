@@ -11,6 +11,7 @@ export interface AddedProductInterface {
   price: string,
   name: string,
   amount: number,
+  isDisabled?: boolean,
 }
 
 export interface ProductsState {
@@ -27,7 +28,7 @@ export const productsSlice = createSlice({
   reducers: {
     addProduct: (state, action: PayloadAction<AddedProductInterface>) => {
       const iterateCallback = (el: AddedProductInterface) => (
-        el.baseProductId === action.payload.baseProductId && el.areaName === action.payload.areaName
+        el.baseProductId === action.payload.baseProductId && el.areaName === action.payload.areaName && el.weight === action.payload.weight
       );
       const isExist = state.addedProducts.some(iterateCallback);
 
