@@ -6,17 +6,17 @@ export const ItemContainer = styled.div`
   padding: 8px;
   background-color: ${props => props.theme.colors.gray};
   border-radius: 16px;
-  max-width: 110px;
+  max-width: 105px;
   margin-bottom: 8px;
-  margin-right: 8px;
+  margin-right: 6px;
   &:nth-child(3n) {
     margin-right: 0;
   }
 `;
 
 export const ItemImage = styled.img`
-  width: 98px;
-  height: 98px;
+  width: 94px;
+  height: 94px;
   border-radius: 16px;
 `;
 

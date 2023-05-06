@@ -121,7 +121,7 @@ export const Item: FC<ItemProps> = (
           border: 'none',
           borderRadius: '16px',
           textTransform: 'capitalize',
-          width: '98px',
+          width: '90px',
           marginTop: '8px',
           fontFamily: 'Inter',
           fontWeight: 500,
